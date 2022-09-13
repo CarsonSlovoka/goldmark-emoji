@@ -15,7 +15,6 @@ func NewEmojiExtender() goldmark.Extender {
 
 // Extend adds a hashtag parser to a Goldmark parser
 func (e *emojiExtender) Extend(m goldmark.Markdown) {
-
 	m.Parser().AddOptions(
 		// https://github.com/yuin/goldmark/blob/20df1691ad91648cd872e6472301d7f6d325b448/parser/parser.go#L566-L578
 		// parser.WithBlockParsers(),
@@ -32,10 +31,6 @@ func (e *emojiExtender) Extend(m goldmark.Markdown) {
 			util.Prioritized(NewHTMLRenderer(), 200),
 		),
 	)
-}
-
-func NewEmojiParser() parser.InlineParser {
-	return nil
 }
 
 func NewHTMLRenderer() renderer.NodeRenderer {
