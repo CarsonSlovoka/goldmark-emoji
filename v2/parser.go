@@ -1,7 +1,8 @@
 package emoji
 
 import (
-	"github.com/yuin/goldmark/ast"
+	"github.com/CarsonSlovoka/goldmark-emoji/v2/ast"
+	gast "github.com/yuin/goldmark/ast"
 	"github.com/yuin/goldmark/parser"
 	"github.com/yuin/goldmark/text"
 )
@@ -16,6 +17,11 @@ func (e *emojiParser) Trigger() []byte {
 	return []byte{':'}
 }
 
-func (e *emojiParser) Parse(parent ast.Node, block text.Reader, pc parser.Context) ast.Node {
-	return nil
+func (e *emojiParser) Parse(parent gast.Node, block text.Reader, pc parser.Context) gast.Node {
+	content, _ := block.PeekLine()
+	if len(content) < 1 {
+		return nil
+	}
+	// ...
+	return &ast.NodeEmoji{}
 }
