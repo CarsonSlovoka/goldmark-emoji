@@ -1,6 +1,7 @@
 package emoji
 
 import (
+	"github.com/CarsonSlovoka/goldmark-emoji/v2/def"
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/parser"
 	"github.com/yuin/goldmark/renderer"
@@ -21,8 +22,8 @@ func (e *emojiExtender) Extend(m goldmark.Markdown) {
 
 		// https://github.com/yuin/goldmark/blob/20df1691ad91648cd872e6472301d7f6d325b448/parser/parser.go#L594-L610
 		parser.WithInlineParsers(
-			util.Prioritized(
-				NewEmojiParser(), 1000,
+			util.Prioritized( // {any, priority} 它的any指的是一個對象，一個當被Parse成功之後，可能會返回的產物(包含在ast.Node之中)
+				NewEmojiParser(def.Github()), 1000,
 			),
 		),
 	)

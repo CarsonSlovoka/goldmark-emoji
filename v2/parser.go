@@ -23,8 +23,10 @@ const (
 	endSuffix   = ':'
 )
 
-func NewEmojiParser() parser.InlineParser {
-	return &emojiParser{}
+func NewEmojiParser(emojis def.Emojis) parser.InlineParser {
+	return &emojiParser{ // 物件內容依需求自訂，可以不給，該成員可能會在Parse被使用到
+		ParserConfig{emojis},
+	}
 }
 
 func (e *emojiParser) Trigger() []byte {
@@ -51,7 +53,7 @@ func (e *emojiParser) Parse(parent gast.Node, block text.Reader, pc parser.Conte
 
 	block.Advance(pos + 1)
 	alias := string(content[1:pos])
-	val, exists := e.Emojis.Get(alias)
+	val, exists := e.Emojis.Get(alias) // 利用Parser本身的成員做某些事情
 	if !exists {
 		return nil
 	}
