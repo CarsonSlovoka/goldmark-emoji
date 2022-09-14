@@ -26,8 +26,8 @@ func (e *NodeEmoji) Dump(source []byte, level int) {
 	ast.DumpHelper(e, source, level, m, nil)
 }
 
-var nodeKindEmoji = ast.NewNodeKind("Emoji")
+var NodeKindEmoji = ast.NewNodeKind("Emoji")
 
 func (e *NodeEmoji) Kind() ast.NodeKind {
-	return nodeKindEmoji
+	return NodeKindEmoji
 }
