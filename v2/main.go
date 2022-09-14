@@ -28,11 +28,7 @@ func (e *emojiExtender) Extend(m goldmark.Markdown) {
 	)
 	m.Renderer().AddOptions(
 		renderer.WithNodeRenderers(
-			util.Prioritized(NewHTMLRenderer(), 200),
+			util.Prioritized(NewEmojiHTMLRenderer(), 200),
 		),
 	)
-}
-
-func NewHTMLRenderer() renderer.NodeRenderer {
-	return nil
 }
