@@ -1,9 +1,9 @@
 package emoji_test
 
 import (
-	"fmt"
 	emoji "github.com/CarsonSlovoka/goldmark-emoji/v2"
 	"github.com/yuin/goldmark"
+	"github.com/yuin/goldmark/testutil"
 	"testing"
 )
 
@@ -13,6 +13,5 @@ func TestNewEmojiExtender(t *testing.T) {
 			emoji.NewEmojiExtender(),
 		),
 	)
-	fmt.Println(markdown)
-	// testutil.DoTestCaseFile(markdown, "test/emoji.txt", t)
+	testutil.DoTestCaseFile(markdown, "test/emoji.txt", t)
 }
