@@ -11,7 +11,8 @@ type NodeEmoji struct {
 
 	// ↓ 以下成員內容可依需求自定義
 	Alias string
-	Value *def.Emoji
+
+	Value *def.Emoji // 一般來說，我們還會包含一個Value的成員
 }
 
 func NewNodeEmoji(alias string, value *def.Emoji) *NodeEmoji {
