@@ -32,9 +32,10 @@ func NewEmojis(es ...Emoji) Emojis {
 	}
 
 	// 建立dict資料
-	for _, e := range ems.list {
+	for i, e := range ems.list {
 		for _, alias := range e.Aliases {
-			ems.dict[alias] = &e
+			// ems.dict[alias] = &e // 這種寫法有問題，外層的e改變後會連帶影響到之前已設定過的數值
+			ems.dict[alias] = &ems.list[i]
 		}
 	}
 	return ems
