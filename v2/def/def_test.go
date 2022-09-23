@@ -9,7 +9,7 @@ import (
 func TestNewEmojis(t *testing.T) {
 	es := def.NewEmojis(
 		def.NewEmoji("man: red hair", []rune{0x1F468, 0x200D, 0x1F9B0}, "red_haired_man", "man_red_hair"),
-		def.NewEmoji("😊", []rune{0x1F60A}, "blush", "smiling_face_with_smiling_eyes", "微笑"),
+		def.NewEmoji("😊 smile", []rune{0x1F60A}, "blush", "smiling_face_with_smiling_eyes", "微笑"),
 	)
 	e1, exists := es.Get("man_red_hair")
 	if !exists {
@@ -20,7 +20,7 @@ func TestNewEmojis(t *testing.T) {
 	}
 
 	e1, _ = es.Get("blush")
-	if e1.Name != "😊" {
+	if e1.String() != "😊" {
 		t.Fatal("name not correct")
 	}
 }
@@ -31,7 +31,7 @@ func ExampleNewEmojis() {
 		def.NewEmoji("😊", []rune{0x1F60A}, "blush", "smiling_face_with_smiling_eyes", "微笑"),
 	)
 	e, _ := es.Get("man_red_hair")
-	fmt.Println(e.Name)
+	fmt.Println(e.Desc)
 	fmt.Printf("%s\n", string(e.Unicode))
 	fmt.Println(e.Aliases[0])
 	// Output:

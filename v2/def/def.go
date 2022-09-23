@@ -1,16 +1,20 @@
 package def
 
 type Emoji struct {
-	Name    string
+	Desc    string
 	Unicode []rune   // 該emoji可能是有很多個codepoints組合而成，例如: red_haired_man: {👨 U+1F468, ‍ U+200D, 🦰 U+1F9B0} 是由這三者組合而成: https://apps.timwhitlock.info/unicode/inspect?s=%F0%9F%91%A8%E2%80%8D%F0%9F%A6%B0
 	Aliases []string // 允許有很多別名
 }
 
-func NewEmoji(name string, unicode []rune, alias ...string) Emoji {
+func NewEmoji(desc string, unicode []rune, alias ...string) Emoji {
 	if len(alias) == 0 {
 		panic("Emoji must have at least one alias.")
 	}
-	return Emoji{name, unicode, alias}
+	return Emoji{desc, unicode, alias}
+}
+
+func (e *Emoji) String() string {
+	return string(e.Unicode)
 }
 
 type Emojis interface {
