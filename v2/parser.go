@@ -6,7 +6,6 @@ import (
 	gast "github.com/yuin/goldmark/ast"
 	"github.com/yuin/goldmark/parser"
 	"github.com/yuin/goldmark/text"
-	"github.com/yuin/goldmark/util"
 )
 
 type ParserConfig struct {
@@ -42,7 +41,13 @@ func (e *emojiParser) Parse(parent gast.Node, block text.Reader, pc parser.Conte
 	pos := 1 // pos 0 為Trigger所觸發的byte，所以跳過它
 	for ; pos < len(content); pos++ {
 		c := content[pos]
+		/* 這種寫法CJK文字會有問題
 		if !(util.IsAlphaNumeric(c) || c == '_' || c == '-') {
+			fmt.Println(c)
+			break
+		}
+		*/
+		if c == ' ' || c == ':' || c == '\\' || c == '/' || c == '*' || c == '`' || c == '\n' {
 			break
 		}
 	}
