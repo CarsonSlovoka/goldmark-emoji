@@ -13,6 +13,7 @@ import (
   "bytes"
   "fmt"
   emoji "github.com/CarsonSlovoka/goldmark-emoji/v2"
+  "github.com/CarsonSlovoka/goldmark-emoji/v2/def"
   "github.com/yuin/goldmark"
   "os"
 )
@@ -20,11 +21,13 @@ import (
 func Example() {
   markdown := goldmark.New(
     goldmark.WithExtensions(
-      emoji.NewEmojiExtender(),
+      emoji.NewEmojiExtender(
+        def.Github(), def.TW(), //... // 可以加入您喜歡的表情符號清單，如果找不到滿意的可以自己建立
+      ),
     ),
   )
 
-  markdown.Convert([]byte(":smiling_face_with_smiling_eyes:"), os.Stdout)
+  markdown.Convert([]byte(":blush:"), os.Stdout)
 
   // Output:
   // <p>😊</p>
@@ -32,7 +35,6 @@ func Example() {
 ```
 
 更多範例請參考[ExampleNewEmojiExtender](./v2/main_test.go)的代碼
-
 
 ## 參考資料
 

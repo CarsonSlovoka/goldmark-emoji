@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	emoji "github.com/CarsonSlovoka/goldmark-emoji/v2"
+	"github.com/CarsonSlovoka/goldmark-emoji/v2/def"
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/testutil"
 	"os"
@@ -11,27 +12,41 @@ import (
 )
 
 func TestNewEmojiExtender(t *testing.T) {
-	markdown := goldmark.New(
+	mdGithub := goldmark.New(
 		goldmark.WithExtensions(
-			emoji.NewEmojiExtender(),
+			emoji.NewEmojiExtender(def.Github()),
 		),
 	)
-	testutil.DoTestCaseFile(markdown, "test/emoji.txt", t)
+	testutil.DoTestCaseFile(mdGithub, "test/github.txt", t)
+
+	mdDefault := goldmark.New(
+		goldmark.WithExtensions(
+			emoji.NewEmojiExtender(), // 省略預設用Github來帶第
+		),
+	)
+	testutil.DoTestCaseFile(mdDefault, "test/github.txt", t)
+
+	markdown := goldmark.New(
+		goldmark.WithExtensions(
+			emoji.NewEmojiExtender(def.Github(), def.TW()),
+		),
+	)
+	testutil.DoTestCaseFile(markdown, "test/all.txt", t)
 }
 
 func ExampleNewEmojiExtender() {
 	markdown := goldmark.New(
 		goldmark.WithExtensions(
-			emoji.NewEmojiExtender(),
+			emoji.NewEmojiExtender(def.Github(), def.TW()),
 		),
 	)
 
-	if err := markdown.Convert([]byte(":smiling_face_with_smiling_eyes:"), os.Stdout); err != nil {
+	if err := markdown.Convert([]byte(":blush:"), os.Stdout); err != nil {
 		panic(err)
 	}
 
 	out := bytes.NewBuffer(make([]byte, 0))
-	content := []byte(`Hello World. :smiling_face_with_smiling_eyes: :微笑:`)
+	content := []byte(`Hello World. :blush: :臉紅:`)
 	if err := markdown.Convert(content, out); err != nil {
 		panic(err)
 	}
