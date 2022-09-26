@@ -32,3 +32,9 @@ func Example() {
 ```
 
 更多範例請參考[ExampleNewEmojiExtender](./v2/main_test.go)的代碼
+
+
+## 參考資料
+
+- [github.com/yuin/goldmark-emoji](https://github.com/yuin/goldmark-emoji#goldmark-emoji)
+- [emojipedia.org](https://emojipedia.org/man-red-hair/)
