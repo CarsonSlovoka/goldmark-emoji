@@ -18,7 +18,7 @@ func init() {
 	DefaultEmojis = def.Github()
 }
 
-func NewEmojiExtender(elems ...def.Emojis) goldmark.Extender {
+func NewExtender(elems ...def.Emojis) goldmark.Extender {
 	if len(elems) == 0 {
 		elems = []def.Emojis{DefaultEmojis}
 	}

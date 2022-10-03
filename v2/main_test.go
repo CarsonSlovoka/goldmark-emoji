@@ -14,30 +14,30 @@ import (
 func TestNewEmojiExtender(t *testing.T) {
 	mdGithub := goldmark.New(
 		goldmark.WithExtensions(
-			emoji.NewEmojiExtender(def.Github()),
+			emoji.NewExtender(def.Github()),
 		),
 	)
 	testutil.DoTestCaseFile(mdGithub, "test/github.txt", t)
 
 	mdDefault := goldmark.New(
 		goldmark.WithExtensions(
-			emoji.NewEmojiExtender(), // 省略預設用Github來帶第
+			emoji.NewExtender(), // 省略預設用Github來帶第
 		),
 	)
 	testutil.DoTestCaseFile(mdDefault, "test/github.txt", t)
 
 	markdown := goldmark.New(
 		goldmark.WithExtensions(
-			emoji.NewEmojiExtender(def.Github(), def.TW()),
+			emoji.NewExtender(def.Github(), def.TW()),
 		),
 	)
 	testutil.DoTestCaseFile(markdown, "test/all.txt", t)
 }
 
-func ExampleNewEmojiExtender() {
+func ExampleNewExtender() {
 	markdown := goldmark.New(
 		goldmark.WithExtensions(
-			emoji.NewEmojiExtender(def.Github(), def.TW()),
+			emoji.NewExtender(def.Github(), def.TW()),
 		),
 	)
 
